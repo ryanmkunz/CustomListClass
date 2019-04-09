@@ -12,6 +12,7 @@ namespace CustomListProject
         
         public T this[int i]
         {
+            //TODO don't let user access out of bounds index
             get { return items[i]; }
             set { items[i] = value; }
         }
@@ -46,6 +47,41 @@ namespace CustomListProject
                 }
             }
             count++;
+        }
+
+        public bool Remove(T item)
+        {
+            //this is garbage
+            int frequency = 0;
+            T[] itemsNew = new T[items.Length - 1];
+            for (int i = 0; i < items.Length; i++)
+            {                
+                if (item.Equals(items[i]) && frequency == 0)
+                {
+                    frequency++;
+                    count--;
+                }
+                else if (frequency > 0)
+                {
+                    itemsNew[i - 1] = items[i];
+                }
+                else
+                {
+                    itemsNew[i] = items[i];
+                }
+            }
+            if (frequency > 0)
+            {
+                for (int i = 0; i < itemsNew.Length; i++)
+                {
+                    items = new T[items.Length - 1];
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

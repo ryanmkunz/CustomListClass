@@ -16,6 +16,7 @@ namespace CustomListProject
             numbers.Add(15);
             numbers.Add(20);
             numbers.Add(25);
+            numbers.Remove(15);
         }
     }
 }
