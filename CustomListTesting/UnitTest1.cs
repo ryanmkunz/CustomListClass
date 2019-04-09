@@ -36,7 +36,7 @@ namespace CustomListTesting
             Assert.AreEqual(expectedCount, myList.Count);
         }
         [TestMethod]
-        public void Add_TwoValues_FirstAtIndexZero()
+        public void Add_TwoNewValues_FirstAtIndexZero()
         {
             //Arrange
             CustomList<int> myList = new CustomList<int>();
