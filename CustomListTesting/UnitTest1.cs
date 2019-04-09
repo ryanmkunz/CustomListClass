@@ -7,8 +7,10 @@ namespace CustomListTesting
     [TestClass]
     public class UnitTest1
     {
+        //Unit of work, state under test, expected behavior
+
         [TestMethod]
-        public void TestMethod1()
+        public void Add_NewValue_ValueIsAddedToEndOfList()
         {
             //Arrange
             CustomList<int> myList = new CustomList<int>();
@@ -21,7 +23,7 @@ namespace CustomListTesting
             Assert.AreEqual(value, myList[0]);
         }
         [TestMethod]
-        public void TestMethod2()
+        public void Add_NewValue_ListCountIncreases()
         {
             //Arrange
             CustomList<int> myList = new CustomList<int>();
@@ -34,7 +36,7 @@ namespace CustomListTesting
             Assert.AreEqual(expectedCount, myList.Count);
         }
         [TestMethod]
-        public void TestMethod3()
+        public void Add_TwoValues_FirstAtIndexZero()
         {
             //Arrange
             CustomList<int> myList = new CustomList<int>();
@@ -47,6 +49,21 @@ namespace CustomListTesting
 
             //Assert
             Assert.AreEqual(value, myList[0]);
+        }
+        [TestMethod]
+        public void Index_IndexValue_ReturnsListValueAtIndex()
+        {
+            //Arrange
+            CustomList<int> myList = new CustomList<int>();
+            int index = 0;
+            int expectedValue = 5;
+
+            //Act
+            myList.Add(expectedValue);
+            int actualValue = myList[index];
+
+            //Assert
+            Assert.AreEqual(expectedValue, actualValue);
         }
     }
 }
