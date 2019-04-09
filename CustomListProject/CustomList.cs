@@ -51,7 +51,6 @@ namespace CustomListProject
 
         public bool Remove(T item)
         {
-            //this is garbage
             int frequency = 0;
             T[] itemsNew = new T[items.Length - 1];
             for (int i = 0; i < items.Length; i++)
@@ -72,9 +71,10 @@ namespace CustomListProject
             }
             if (frequency > 0)
             {
-                for (int i = 0; i < itemsNew.Length; i++)
+                items = new T[itemsNew.Length];
+                for (int i = 0; i < items.Length; i++)
                 {
-                    items = new T[items.Length - 1];
+                    items[i] = itemsNew[i];                    
                 }
                 return true;
             }
