@@ -98,7 +98,16 @@ namespace CustomListProject
         }
         public static CustomList<T> operator +(CustomList<T> l1, CustomList<T> l2)
         {
-            return new CustomList<T>();
+            CustomList<T> Combination = new CustomList<T>();
+            for (int i = 0; i < (l1.count); i++)
+            {
+                Combination.Add(l1[i]);
+            }
+            for (int i = 0; i < (l2.count); i++)
+            {
+                Combination.Add(l2[i]);
+            }
+            return Combination;
         }
     }
 }

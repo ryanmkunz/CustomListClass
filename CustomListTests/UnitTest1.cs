@@ -329,8 +329,7 @@ namespace CustomListTests
         {
             //Arrange
             CustomList<int> odd = new CustomList<int>();
-            CustomList<int> even = new CustomList<int>();
-            CustomList<int> Combination = new CustomList<int>();
+            CustomList<int> even = new CustomList<int>();            
             int value1 = 1;
             int value2 = 3;
             int value3 = 5;
@@ -347,9 +346,9 @@ namespace CustomListTests
             even.Add(value4);
             even.Add(value5);
             even.Add(value6);
-            expected = "1, 3, 5, 2, 4, 6";
-            Combination = odd + even;
-            actual = Combination.ToString();
+            expected = "135246";
+            odd += even;
+            actual = odd.ToString();
             
 
             //Assert
@@ -378,7 +377,7 @@ namespace CustomListTests
             even.Add(value4);
             even.Add(value5);
             even.Add(value6);
-            expected = "1.1, 3.3, 5.5, 2.2, 4.4, 6.6";
+            expected = "1.13.35.52.24.46.6";
             Combination = odd + even;
             actual = Combination.ToString();
 
@@ -405,7 +404,7 @@ namespace CustomListTests
             odd.Add(value2);
             odd.Add(value3);
             even.Add(value4);
-            expected = "1, 3, 5, 2";
+            expected = "1352";
             Combination = odd + even;
             actual = Combination.ToString();
 
@@ -435,7 +434,7 @@ namespace CustomListTests
             even.Add(value4);
             even.Add(value5);
             even.Add(value6);
-            expected = "3, 3, 3, 3, 3, 3";
+            expected = "333333";
             Combination = odd + even;
             actual = Combination.ToString();
 
