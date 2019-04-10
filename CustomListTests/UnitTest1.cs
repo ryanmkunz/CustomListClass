@@ -200,7 +200,7 @@ namespace CustomListTests
             //Assert
             Assert.AreEqual(expected, actual);
         }
-        [TestMethod]
+        [TestMethod]       
         public void Remove_AllValues_ValueAtIndexZeroIsZero()
         {
             //Arrange
@@ -218,10 +218,11 @@ namespace CustomListTests
             myList.Remove(value1);
             myList.Remove(value2);
             myList.Remove(value3);
-            actual = myList[0];
+            actual = myList.Count;
 
             //Assert
             Assert.AreEqual(expected, actual);
+
         }
         [TestMethod]
         public void Remove_ValueNotInList_ReturnsFalse()
