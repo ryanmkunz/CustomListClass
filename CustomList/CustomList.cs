@@ -26,8 +26,7 @@ namespace CustomListProject
         }
 
         public void Add(T item)
-        {
-            
+        {            
             if (Count == 0)
             {
                 items[0] = item;
@@ -86,6 +85,16 @@ namespace CustomListProject
             {
                 return false;
             }
+        }
+
+        public string toString()
+        {
+            string convertedString = "";
+            for (int i = 0; i < items.Length; i++)
+            {
+                convertedString += items[i];
+            }
+            return convertedString;
         }
     }
 }
