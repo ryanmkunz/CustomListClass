@@ -472,5 +472,128 @@ namespace CustomListTests
             //Assert
             Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void Subtract_Int_RemovesIntFromList()
+        {
+            //Arrange
+            CustomList<int> first = new CustomList<int>();
+            CustomList<int> second = new CustomList<int>();
+            int value1 = 1;
+            int value2 = 3;
+            int value3 = 5;
+            string expected;
+            string actual;
+
+            //Act
+            first.Add(value1);
+            first.Add(value2);
+            first.Add(value3);
+            second.Add(value2);
+            expected = "15";
+            first -= second;
+            actual = first.ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Subtract_Bool_RemovesBoolFromList()
+        {
+            //Arrange
+            CustomList<bool> first = new CustomList<bool>();
+            CustomList<bool> second = new CustomList<bool>();
+            bool value1 = true;
+            bool value2 = false;
+            bool value3 = true;
+            string expected;
+            string actual;
+
+            //Act
+            first.Add(value1);
+            first.Add(value2);
+            first.Add(value3);
+            second.Add(value2);
+            expected = "TrueTrue";
+            first -= second;
+            actual = first.ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Subtract_Double_RemovesDoubleFromList()
+        {
+            //Arrange
+            CustomList<double> first = new CustomList<double>();
+            CustomList<double> second = new CustomList<double>();
+            double value1 = 5.5;
+            double value2 = 6.6;
+            double value3 = 7.7;
+            string expected;
+            string actual;
+
+            //Act
+            first.Add(value1);
+            first.Add(value2);
+            first.Add(value3);
+            second.Add(value2);
+            expected = "5.57.7";
+            first -= second;
+            actual = first.ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Subtract_IntNotInList_ReturnsOriginalList()
+        {
+            //Arrange
+            CustomList<int> first = new CustomList<int>();
+            CustomList<int> second = new CustomList<int>();
+            int value1 = 5;
+            int value2 = 6;
+            int value3 = 7;
+            int value4 = 1;
+            string expected;
+            string actual;
+
+            //Act
+            first.Add(value1);
+            first.Add(value2);
+            first.Add(value3);
+            second.Add(value4);
+            expected = "567";
+            first -= second;
+            actual = first.ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Subtract_IntandIntNotInList_RemovesOneIntFromList()
+        {
+            //Arrange
+            CustomList<int> first = new CustomList<int>();
+            CustomList<int> second = new CustomList<int>();
+            int value1 = 5;
+            int value2 = 6;
+            int value3 = 7;
+            int value4 = 1;
+            string expected;
+            string actual;
+
+            //Act
+            first.Add(value1);
+            first.Add(value2);
+            first.Add(value3);
+            second.Add(value4);
+            second.Add(value2);
+            expected = "57";
+            first -= second;
+            actual = first.ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
