@@ -201,7 +201,7 @@ namespace CustomListTests
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void Remove_AllIntValues_ValueAtIndexZeroIsZero()
+        public void Remove_AllValues_ValueAtIndexZeroIsZero()
         {
             //Arrange
             CustomList<int> myList = new CustomList<int>();

@@ -40,7 +40,7 @@ namespace CustomListProject
                     itemsNew[i] = items[i];
                 }
                 itemsNew[itemsNew.Length - 1] = item;
-                items = new T[items.Length + 1];
+                items = new T[itemsNew.Length];
                 for (int i = 0; i < itemsNew.Length; i++)
                 {
                     items[i] = itemsNew[i];
@@ -64,8 +64,12 @@ namespace CustomListProject
                 {
                     itemsNew[i - 1] = items[i];
                 }
-                else
+                else if (i == items.Length - 1 && frequency == 0)
                 {
+                    return false;
+                }
+                else
+                {                    
                     itemsNew[i] = items[i];
                 }
             }
