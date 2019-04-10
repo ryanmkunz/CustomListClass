@@ -2,18 +2,16 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CustomListProject;
 
-namespace CustomListTesting
+namespace CustomListTests
 {
     [TestClass]
     public class UnitTest1
     {
-        //Unit of work, state under test, expected behavior
-
         [TestMethod]
         public void Add_NewValue_ValueIsAddedToEndOfList()
         {
             //Arrange
-            CustomList<int> myList = new CustomList<int>();
+            CustomList<int> myList = new CustomList<int>();            
             int value = 5;
             int expected = 5;
             int actual;
