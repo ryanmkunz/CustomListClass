@@ -235,7 +235,7 @@ namespace CustomListTests
             myList.Add(value2);
             myList.Add(value3);
             expected = "51015";
-            actual = myList.toString();
+            actual = myList.ToString();
 
             //Assert
             Assert.AreEqual(expected, actual);
@@ -256,7 +256,7 @@ namespace CustomListTests
             myList.Add(value2);
             myList.Add(value3);
             expected = "5.510.0115.55";
-            actual = myList.toString();
+            actual = myList.ToString();
 
             //Assert
             Assert.AreEqual(expected, actual);
@@ -277,7 +277,7 @@ namespace CustomListTests
             myList.Add(value2);
             myList.Add(value3);
             expected = "TrueFalseTrue";
-            actual = myList.toString();
+            actual = myList.ToString();
 
             //Assert
             Assert.AreEqual(expected, actual);
@@ -298,7 +298,7 @@ namespace CustomListTests
             myList.Add(value2);
             myList.Add(value3);
             expected = "I Like Ham";
-            actual = myList.toString();
+            actual = myList.ToString();
 
             //Assert
             Assert.AreEqual(expected, actual);
@@ -319,7 +319,156 @@ namespace CustomListTests
             myList.Add(value2);
             myList.Add(value3);
             expected = "0.12345678.90.3333333";
-            actual = myList.toString();
+            actual = myList.ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void CombineList_IntCustomLists_CombinesListsTogether()
+        {
+            //Arrange
+            CustomList<int> odd = new CustomList<int>();
+            CustomList<int> even = new CustomList<int>();
+            CustomList<int> Combination = new CustomList<int>();
+            int value1 = 1;
+            int value2 = 3;
+            int value3 = 5;
+            int value4 = 2;
+            int value5 = 4;
+            int value6 = 6;
+            string expected;
+            string actual;
+
+            //Act
+            odd.Add(value1);
+            odd.Add(value2);
+            odd.Add(value3);
+            even.Add(value4);
+            even.Add(value5);
+            even.Add(value6);
+            expected = "1, 3, 5, 2, 4, 6";
+            Combination = odd + even;
+            actual = Combination.ToString();
+            
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void CombineList_DoubleCustomLists_CombinesListsTogether()
+        {
+            //Arrange
+            CustomList<double> odd = new CustomList<double>();
+            CustomList<double> even = new CustomList<double>();
+            CustomList<double> Combination = new CustomList<double>();
+            double value1 = 1.1;
+            double value2 = 3.3;
+            double value3 = 5.5;
+            double value4 = 2.2;
+            double value5 = 4.4;
+            double value6 = 6.6;
+            string expected;
+            string actual;
+
+            //Act
+            odd.Add(value1);
+            odd.Add(value2);
+            odd.Add(value3);
+            even.Add(value4);
+            even.Add(value5);
+            even.Add(value6);
+            expected = "1.1, 3.3, 5.5, 2.2, 4.4, 6.6";
+            Combination = odd + even;
+            actual = Combination.ToString();
+
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void CombineList_CustomListsDiffLength_CombinesListsTogether()
+        {
+            //Arrange
+            CustomList<int> odd = new CustomList<int>();
+            CustomList<int> even = new CustomList<int>();
+            CustomList<int> Combination = new CustomList<int>();
+            int value1 = 1;
+            int value2 = 3;
+            int value3 = 5;
+            int value4 = 2;
+            string expected;
+            string actual;
+
+            //Act
+            odd.Add(value1);
+            odd.Add(value2);
+            odd.Add(value3);
+            even.Add(value4);
+            expected = "1, 3, 5, 2";
+            Combination = odd + even;
+            actual = Combination.ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void CombineList_CustomListsAllSameValue_CombinesListsTogether()
+        {
+            //Arrange
+            CustomList<int> odd = new CustomList<int>();
+            CustomList<int> even = new CustomList<int>();
+            CustomList<int> Combination = new CustomList<int>();
+            int value1 = 3;
+            int value2 = 3;
+            int value3 = 3;
+            int value4 = 3;
+            int value5 = 3;
+            int value6 = 3;
+            string expected;
+            string actual;
+
+            //Act
+            odd.Add(value1);
+            odd.Add(value2);
+            odd.Add(value3);
+            even.Add(value4);
+            even.Add(value5);
+            even.Add(value6);
+            expected = "3, 3, 3, 3, 3, 3";
+            Combination = odd + even;
+            actual = Combination.ToString();
+
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void CombineList_BoolCustomList_CombinesListsTogether()
+        {
+            //Arrange
+            CustomList<bool> first = new CustomList<bool>();
+            CustomList<bool> second = new CustomList<bool>();
+            CustomList<bool> Combination = new CustomList<bool>();
+            bool value1 = true;
+            bool value2 = false;
+            bool value3 = true;
+            bool value4 = false;
+            bool value5 = true;
+            bool value6 = false;
+            string expected;
+            string actual;
+
+            //Act
+            first.Add(value1);
+            first.Add(value2);
+            first.Add(value3);
+            second.Add(value4);
+            second.Add(value5);
+            second.Add(value6);
+            expected = "TrueFalseTrueFalseTrueFalse";
+            Combination = first + second;
+            actual = Combination.ToString();
 
             //Assert
             Assert.AreEqual(expected, actual);

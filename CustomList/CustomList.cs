@@ -87,7 +87,7 @@ namespace CustomListProject
             }
         }
 
-        public string toString()
+        public override string ToString()
         {
             string convertedString = "";
             for (int i = 0; i < items.Length; i++)
@@ -95,6 +95,10 @@ namespace CustomListProject
                 convertedString += items[i];
             }
             return convertedString;
+        }
+        public static CustomList<T> operator +(CustomList<T> l1, CustomList<T> l2)
+        {
+            return new CustomList<T>();
         }
     }
 }
