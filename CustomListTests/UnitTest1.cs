@@ -644,8 +644,6 @@ namespace CustomListTests
             double value4 = 2.2;
             double value5 = 4.4;
             double value6 = 6.6;
-            double value7 = 7.7;
-            double value8 = 8.8;
             string expected;
             string actual;
 
@@ -657,7 +655,7 @@ namespace CustomListTests
             even.Add(value5);
             even.Add(value6);
             result = odd.Zip(even);
-            expected = "1.12.23.34.45.56.67.78.8";
+            expected = "1.12.23.34.45.56.6";
             actual = result.ToString();
 
             //Assert
@@ -740,6 +738,38 @@ namespace CustomListTests
 
             result = odd.Zip(even);
             expected = "246";
+            actual = result.ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Zip_TwoIntListsOdd_ReturnsListWithAlternatingValues()
+        {
+            //Arrange
+            CustomList<int> odd = new CustomList<int>();
+            CustomList<int> even = new CustomList<int>();
+            CustomList<int> result = new CustomList<int>();
+            int value1 = 1;
+            int value2 = 3;
+            int value3 = 5;
+            int value4 = 2;
+            int value5 = 4;
+            int value6 = 6;
+            int value7 = 8;
+            string expected;
+            string actual;
+
+            //Act
+            odd.Add(value1);
+            odd.Add(value2);
+            odd.Add(value3);
+            even.Add(value4);
+            even.Add(value5);
+            even.Add(value6);
+            even.Add(value7);
+            result = odd.Zip(even);
+            expected = "1234568";
             actual = result.ToString();
 
             //Assert

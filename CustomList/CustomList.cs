@@ -24,10 +24,9 @@ namespace CustomListProject
                 return count;
             }
         }
-
         public void Add(T item)
         {            
-            if (Count == 0)
+            if (count == 0)
             {
                 items[0] = item;
             }
@@ -124,6 +123,23 @@ namespace CustomListProject
                 }
             }
             return l1;
+        }
+
+        public CustomList<T> Zip(CustomList<T> l1)
+        {
+            CustomList<T> Combination = new CustomList<T>();
+            for (int i = 0; i < Math.Max(this.count,l1.count); i++)
+            {
+                if (this.count > i)
+                {
+                    Combination.Add(items[i]);
+                }
+                if (l1.count > i)
+                {
+                    Combination.Add(l1[i]);
+                }                
+            }
+            return Combination;
         }
     }
 }
