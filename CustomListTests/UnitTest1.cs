@@ -478,6 +478,7 @@ namespace CustomListTests
             //Arrange
             CustomList<int> first = new CustomList<int>();
             CustomList<int> second = new CustomList<int>();
+            CustomList<int> result = new CustomList<int>();
             int value1 = 1;
             int value2 = 3;
             int value3 = 5;
@@ -490,8 +491,8 @@ namespace CustomListTests
             first.Add(value3);
             second.Add(value2);
             expected = "15";
-            first -= second;
-            actual = first.ToString();
+            result = first - second;
+            actual = result.ToString();
 
             //Assert
             Assert.AreEqual(expected, actual);
@@ -502,6 +503,7 @@ namespace CustomListTests
             //Arrange
             CustomList<bool> first = new CustomList<bool>();
             CustomList<bool> second = new CustomList<bool>();
+            CustomList<bool> result = new CustomList<bool>();
             bool value1 = true;
             bool value2 = false;
             bool value3 = true;
@@ -514,8 +516,8 @@ namespace CustomListTests
             first.Add(value3);
             second.Add(value2);
             expected = "TrueTrue";
-            first -= second;
-            actual = first.ToString();
+            result = first - second;
+            actual = result.ToString();
 
             //Assert
             Assert.AreEqual(expected, actual);
@@ -526,6 +528,7 @@ namespace CustomListTests
             //Arrange
             CustomList<double> first = new CustomList<double>();
             CustomList<double> second = new CustomList<double>();
+            CustomList<double> result = new CustomList<double>();
             double value1 = 5.5;
             double value2 = 6.6;
             double value3 = 7.7;
@@ -538,8 +541,8 @@ namespace CustomListTests
             first.Add(value3);
             second.Add(value2);
             expected = "5.57.7";
-            first -= second;
-            actual = first.ToString();
+            result = first - second;
+            actual = result.ToString();
 
             //Assert
             Assert.AreEqual(expected, actual);
@@ -550,6 +553,7 @@ namespace CustomListTests
             //Arrange
             CustomList<int> first = new CustomList<int>();
             CustomList<int> second = new CustomList<int>();
+            CustomList<int> result = new CustomList<int>();
             int value1 = 5;
             int value2 = 6;
             int value3 = 7;
@@ -563,8 +567,8 @@ namespace CustomListTests
             first.Add(value3);
             second.Add(value4);
             expected = "567";
-            first -= second;
-            actual = first.ToString();
+            result = first - second;
+            actual = result.ToString();
 
             //Assert
             Assert.AreEqual(expected, actual);
@@ -575,6 +579,8 @@ namespace CustomListTests
             //Arrange
             CustomList<int> first = new CustomList<int>();
             CustomList<int> second = new CustomList<int>();
+            CustomList<int> result = new CustomList<int>();
+
             int value1 = 5;
             int value2 = 6;
             int value3 = 7;
@@ -589,8 +595,152 @@ namespace CustomListTests
             second.Add(value4);
             second.Add(value2);
             expected = "57";
-            first -= second;
-            actual = first.ToString();
+            result = first - second;
+            actual = result.ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Zip_TwoIntLists_ReturnsListWithAlternatingValues()
+        {
+            //Arrange
+            CustomList<int> odd = new CustomList<int>();
+            CustomList<int> even = new CustomList<int>();
+            CustomList<int> result = new CustomList<int>();
+            int value1 = 1;
+            int value2 = 3;
+            int value3 = 5;
+            int value4 = 2;
+            int value5 = 4;
+            int value6 = 6;
+            string expected;
+            string actual;
+
+            //Act
+            odd.Add(value1);
+            odd.Add(value2);
+            odd.Add(value3);
+            even.Add(value4);
+            even.Add(value5);
+            even.Add(value6);
+            result = odd.Zip(even);
+            expected = "123456";
+            actual = result.ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Zip_TwoDoubleLists_ReturnsListWithAlternatingValues()
+        {
+            //Arrange
+            CustomList<double> odd = new CustomList<double>();
+            CustomList<double> even = new CustomList<double>();
+            CustomList<double> result = new CustomList<double>();
+            double value1 = 1.1;
+            double value2 = 3.3;
+            double value3 = 5.5;
+            double value4 = 2.2;
+            double value5 = 4.4;
+            double value6 = 6.6;
+            double value7 = 7.7;
+            double value8 = 8.8;
+            string expected;
+            string actual;
+
+            //Act
+            odd.Add(value1);
+            odd.Add(value2);
+            odd.Add(value3);
+            even.Add(value4);
+            even.Add(value5);
+            even.Add(value6);
+            result = odd.Zip(even);
+            expected = "1.12.23.34.45.56.67.78.8";
+            actual = result.ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Zip_TwoBoolLists_ReturnsListWithAlternatingValues()
+        {
+            //Arrange
+            CustomList<bool> odd = new CustomList<bool>();
+            CustomList<bool> even = new CustomList<bool>();
+            CustomList<bool> result = new CustomList<bool>();
+            bool value1 = true;
+            bool value2 = true;
+            bool value3 = true;
+            bool value4 = false;
+            bool value5 = false;
+            bool value6 = false;
+            string expected;
+            string actual;
+
+            //Act
+            odd.Add(value1);
+            odd.Add(value2);
+            odd.Add(value3);
+            even.Add(value4);
+            even.Add(value5);
+            even.Add(value6);
+            result = odd.Zip(even);
+            expected = "TrueFalseTrueFalseTrueFalse";
+            actual = result.ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Zip_ListAndEmptyList_ReturnsFirstList()
+        {
+            //Arrange
+            CustomList<int> odd = new CustomList<int>();
+            CustomList<int> even = new CustomList<int>();
+            CustomList<int> result = new CustomList<int>();
+            int value1 = 1;
+            int value2 = 3;
+            int value3 = 5;
+
+            string expected;
+            string actual;
+
+            //Act
+            odd.Add(value1);
+            odd.Add(value2);
+            odd.Add(value3);
+
+            result = odd.Zip(even);
+            expected = "135";
+            actual = result.ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Zip_EmptyListFullList_ReturnsSecondList()
+        {
+            //Arrange
+            CustomList<int> odd = new CustomList<int>();
+            CustomList<int> even = new CustomList<int>();
+            CustomList<int> result = new CustomList<int>();
+            int value1 = 2;
+            int value2 = 4;
+            int value3 = 6;
+
+            string expected;
+            string actual;
+
+            //Act
+            odd.Add(value1);
+            odd.Add(value2);
+            odd.Add(value3);
+
+            result = odd.Zip(even);
+            expected = "246";
+            actual = result.ToString();
 
             //Assert
             Assert.AreEqual(expected, actual);

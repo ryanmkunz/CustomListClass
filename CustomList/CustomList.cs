@@ -96,6 +96,7 @@ namespace CustomListProject
             }
             return convertedString;
         }
+
         public static CustomList<T> operator +(CustomList<T> l1, CustomList<T> l2)
         {
             CustomList<T> Combination = new CustomList<T>();
@@ -108,6 +109,21 @@ namespace CustomListProject
                 Combination.Add(l2[i]);
             }
             return Combination;
+        }
+
+        public static CustomList<T> operator -(CustomList<T> l1, CustomList<T> l2)
+        {
+            for (int i = 0; i < l2.count; i++)
+            {
+                for (int j = 0; j < l1.count; j++)
+                {
+                    if (l1[j].Equals(l2[i]))
+                    {
+                        l1.Remove(l1[j]);
+                    }
+                }
+            }
+            return l1;
         }
     }
 }
