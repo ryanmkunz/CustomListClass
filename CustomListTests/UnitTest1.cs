@@ -95,6 +95,8 @@ namespace CustomListTests
         [TestMethod]
         public void Remove_ExistingValue_RemovesExistingValueAtEnd()
         {
+            //Write a new test for a reference type list using null for a value
+
             //Arrange
             CustomList<int> myList = new CustomList<int>();
             int value1 = 5;
@@ -284,7 +286,7 @@ namespace CustomListTests
         }
         [TestMethod]
         public void ToString_StringList_ReturnsListAsAString()
-        {
+        {            
             //Arrange
             CustomList<string> myList = new CustomList<string>();
             string value1 = "I ";

@@ -12,9 +12,24 @@ namespace CustomListProject
         
         public T this[int i]
         {
-            //TODO don't let user access out of bounds index
-            get { return items[i]; }
-            set { items[i] = value; }
+            get
+            {
+                if (i < this.count && i >= 0)
+                {
+                    return items[i];
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException(string.Format("index out of range"));
+                }                
+            }
+            set
+            {
+                if (i < this.count && i >= 0)
+                {
+                    items[i] = value;
+                }                
+            }
         }
         private int count;
         public int Count
