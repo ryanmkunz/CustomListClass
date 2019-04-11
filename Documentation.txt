@@ -1,0 +1,53 @@
+List<T>.Remove(T) Method
+------------------------------------------------------------
+Removes the first instance of an object from List<T>
+------------------------------------------------------------
+
+Parameters:
+
+item T
+
+Returns:
+
+Boolean
+The method returns true if the item was removed from
+the list, and returns false if the item was not in
+the list.
+
+Implements:
+
+Remove(T)
+
+Examples:
+
+C#
+------------------------------------------------------------
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+//This is an int list with four values added, and 
+//then one removed
+namespace CustomListProject
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {                
+            CustomList<int> numbers = new CustomList<int>();
+            bool result;
+            numbers.Add(5);
+            numbers.Add(10);
+            numbers.Add(15);
+            numbers.Add(20);
+            //This will remove the item 15 from the list
+            result = numbers.Remove(15);
+        }
+    }
+}
+
+------------------------------------------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+------------------------------------------------------------
