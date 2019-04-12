@@ -865,5 +865,27 @@ namespace CustomListTests
             //Assert
             Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void Iterate_IntList_IteratesList()
+        {
+            //Arrange
+            CustomList<int> nums = new CustomList<int>();
+            int value1 = 1;
+            int expected;
+            int actual;
+
+            //Act
+            nums.Add(value1);
+            actual = 0;
+            expected = 1;
+
+            foreach (var item in nums)
+            {
+                actual = 1;
+            }
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
     }
 }

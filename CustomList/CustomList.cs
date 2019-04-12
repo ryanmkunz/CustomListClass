@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CustomListProject
 {
-    public class CustomList<T> : IEnumerable
+    public class CustomList<T> : IEnumerable where T : IComparable
     {
         private T[] items = new T[1];
         
@@ -44,11 +44,17 @@ namespace CustomListProject
         //---------------------------------------------------
         //What is happening here?
 
+        //when a foreach loop is hit it calls on the GetEnumerator method
+        //
+
         int position = -1;
         //IEnumerator and IEnumerable require these methods.
         public IEnumerator GetEnumerator()
         {
-            return (IEnumerator)this;
+            for (int index = 0; index < count; index++)
+            {
+                yield return items[index];                
+            }
         }
 
         //IEnumerator
@@ -66,16 +72,6 @@ namespace CustomListProject
         public object Current
         {
             get { return items[position]; }
-        }
-
-        IEnumerator<T> IEnumerable<T>.GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
         }
         //---------------------------------------------------
 
@@ -180,36 +176,12 @@ namespace CustomListProject
             return l1;
         }
 
-        //public static bool operator <(CustomList<T> notAList1, CustomList<T> notAList2)
-        //{
-        //    if (notAList1 > notAList2)
-        //    {
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}
-
-        //public static bool operator >(CustomList<T> notAList1, CustomList<T> notAList2)
-        //{
-        //    if (notAList1 < notAList2)
-        //    {
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}
-
         public CustomList<T> Zip(CustomList<T> l1)
         {
             CustomList<T> Combination = new CustomList<T>();
-            for (int i = 0; i < Math.Max(this.count,l1.count); i++)
+            for (int i = 0; i < Math.Max(count,l1.count); i++)
             {
-                if (this.count > i)
+                if (count > i)
                 {
                     Combination.Add(items[i]);
                 }
@@ -219,29 +191,32 @@ namespace CustomListProject
                 }                
             }
             return Combination;
-        }      
+        }
 
-        //public CustomList<T> Sort()
-        //{
-        //    CustomList<T> SortedList = new CustomList<T>();
-        //    int GreaterThanCount = 0;
+        public CustomList<T> Sort() //bubble sort
+        {
+            int i;
+            int j;
 
-        //    for (int i = 0; i < count; i++)
-        //    {
-        //        for (int j = 0; j < count; j++)
-        //        {
-        //            if (items[i] > items[j])
-        //            {
-        //                //what if there are equal values
-        //                GreaterThanCount++;
-        //            }
-        //            SortedList[GreaterThanCount] = items[i];
-        //            GreaterThanCount = 0;
-        //        }
-        //    }
-        //    return SortedList;
-        //}
+            for (j = count-1; j > 0; j--)
+            {
+                for (i = 0; i < j; i++)
+                {
+                    if (items[i].CompareTo(items[i+1]) > 0)
+                    {
+                        exchange(this, i, i + 1);
+                    }
+                }            
+            }
+            return this;
+        }
 
-        
+        public void exchange(CustomList<T> l1, int m, int n)
+        {
+            T temporary;
+            temporary = l1[m];
+            l1[m] = l1[n];
+            l1[n] = temporary;
+        }
     }
 }
