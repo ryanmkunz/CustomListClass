@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CustomListProject
 {
-    public class CustomList<T>
+    public class CustomList<T> : IEnumerable
     {
         private T[] items = new T[1];
         
@@ -14,7 +15,7 @@ namespace CustomListProject
         {
             get
             {
-                if (i < this.count && i >= 0)
+                if (i < count && i >= 0)
                 {
                     return items[i];
                 }
@@ -25,7 +26,7 @@ namespace CustomListProject
             }
             set
             {
-                if (i < this.count && i >= 0)
+                if (i < count && i >= 0)
                 {
                     items[i] = value;
                 }                
@@ -39,6 +40,45 @@ namespace CustomListProject
                 return count;
             }
         }
+
+        //---------------------------------------------------
+        //What is happening here?
+
+        int position = -1;
+        //IEnumerator and IEnumerable require these methods.
+        public IEnumerator GetEnumerator()
+        {
+            return (IEnumerator)this;
+        }
+
+        //IEnumerator
+        public bool MoveNext()
+        {
+            position++;
+            return (position < count);
+        }
+
+        //IEnumerable
+        public void Reset()
+        { position = 0; }
+
+        //IEnumerable
+        public object Current
+        {
+            get { return items[position]; }
+        }
+
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+        //---------------------------------------------------
+
         public void Add(T item)
         {            
             if (count == 0)
@@ -140,6 +180,30 @@ namespace CustomListProject
             return l1;
         }
 
+        //public static bool operator <(CustomList<T> notAList1, CustomList<T> notAList2)
+        //{
+        //    if (notAList1 > notAList2)
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
+
+        //public static bool operator >(CustomList<T> notAList1, CustomList<T> notAList2)
+        //{
+        //    if (notAList1 < notAList2)
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
+
         public CustomList<T> Zip(CustomList<T> l1)
         {
             CustomList<T> Combination = new CustomList<T>();
@@ -155,6 +219,29 @@ namespace CustomListProject
                 }                
             }
             return Combination;
-        }
+        }      
+
+        //public CustomList<T> Sort()
+        //{
+        //    CustomList<T> SortedList = new CustomList<T>();
+        //    int GreaterThanCount = 0;
+
+        //    for (int i = 0; i < count; i++)
+        //    {
+        //        for (int j = 0; j < count; j++)
+        //        {
+        //            if (items[i] > items[j])
+        //            {
+        //                //what if there are equal values
+        //                GreaterThanCount++;
+        //            }
+        //            SortedList[GreaterThanCount] = items[i];
+        //            GreaterThanCount = 0;
+        //        }
+        //    }
+        //    return SortedList;
+        //}
+
+        
     }
 }

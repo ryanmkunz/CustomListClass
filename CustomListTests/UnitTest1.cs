@@ -777,5 +777,93 @@ namespace CustomListTests
             //Assert
             Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void Sort_IntList_ReturnsSortedList()
+        {
+            //Arrange
+            CustomList<int> nums = new CustomList<int>();
+            int value1 = 5;
+            int value2 = 2;
+            int value3 = 4;
+            int value4 = 1;
+            int value5 = 3;
+            string expected;
+            string actual;
+
+            //Act
+            nums.Add(value1);
+            nums.Add(value2);
+            nums.Add(value3);
+            nums.Add(value4);
+            nums.Add(value5);
+
+            expected = "12345";
+            nums.Sort();
+            actual = nums.ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Sort_StringList_ReturnsSortedList()
+        {
+            //Arrange
+            CustomList<string> names = new CustomList<string>();
+            string name1 = "Curtis";
+            string name2 = "Adam";
+            string name3 = "Brian";
+            string expected;
+            string actual;
+
+            //Act
+            names.Add(name1);
+            names.Add(name2);
+            names.Add(name3);
+
+            names.Sort();
+            expected = "AdamBrianCurtis";
+            actual = names.ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }  
+        [TestMethod]
+        public void Compare_TwoIntValues_ReturnsTrueIfFirstIsGreater()
+        {
+            //Arrange
+            CustomList<int> nums = new CustomList<int>();
+            int value1 = 10;
+            int value2 = 5;
+            bool actual;
+            bool expected;
+
+            //Act
+            nums.Add(value1);
+            nums.Add(value2);
+            actual = nums[0] > nums[1];
+            expected = true;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Compare_TwoIntValues_ReturnsTrueIfSecondIsGreater()
+        {
+            //Arrange
+            CustomList<int> nums = new CustomList<int>();
+            int value1 = 5;
+            int value2 = 10;
+            bool actual;
+            bool expected;
+
+            //Act
+            nums.Add(value1);
+            nums.Add(value2);
+            actual = nums[0] < nums[1];
+            expected = true;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
